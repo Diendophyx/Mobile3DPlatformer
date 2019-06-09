@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MobileGaming
 {
@@ -13,8 +14,12 @@ namespace MobileGaming
         public int jumpCount = 0;
         public float sideRayDistance = 0.5f;
         public float moveSpeed = 3;
+        public bool isGameOver;
+        public GameObject keepPlayingMenu;
 
+        private Vector3 spawnPoint;
         private Ray Groundray;
+
         // Use this for initialization
         void Start()
         {
@@ -65,12 +70,17 @@ namespace MobileGaming
             RaycastHit hit;
             if (Physics.Raycast(SideRay, out hit, sideRayDistance))
             {
-                Debug.Log("HitAWall");
+                GameOver();
             }
         }
         void Jump()
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpHeight); // adds a small force Upwards timsed by jumpheight
+        }
+
+        void GameOver()
+        {
+            keepPlayingMenu.SetActive(true);
         }
     }
 }

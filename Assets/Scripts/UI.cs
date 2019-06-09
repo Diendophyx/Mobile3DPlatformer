@@ -4,19 +4,25 @@ using UnityEngine;
 
 namespace MobileGaming
 {
-    public class GameOver : MonoBehaviour
+    public class UI : MonoBehaviour
     {
+        public GameObject gameOverMenu;
         public PlayerController player;
 
         private void Start()
         {
-            player = GetComponent<PlayerController>();
+            gameOverMenu.SetActive(false);
+        }
+
+        void KeepPlaying()
+        {
+            gameOverMenu.SetActive(false);
         }
         private void Update()
         {
             if (player.isGameOver == true)
             {
-                Debug.Log("GameOver");
+                gameOverMenu.SetActive(true);
             }
         }
     }
