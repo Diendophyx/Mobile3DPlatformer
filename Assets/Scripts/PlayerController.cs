@@ -12,7 +12,7 @@ namespace MobileGaming
         public float groundRayDitance = 0.5f;
         public float jumpHeight = 10f;
         public int jumpCount = 0;
-        public float sideRayDistance = 0.5f;
+        public float sideRayDistance = 0.03f;
         public float moveSpeed = 3;
         public bool isGameOver;
         public GameObject keepPlayingMenu;
@@ -31,6 +31,10 @@ namespace MobileGaming
         {
             PushRight();  // Calling these in Update so they constantly happen
             Movement();   // Calling these in Update so they constantly happen
+            if (isGameOver == true)
+            {
+                GameOver();
+            }
         }
 
         void PushRight()
@@ -70,7 +74,11 @@ namespace MobileGaming
             RaycastHit hit;
             if (Physics.Raycast(SideRay, out hit, sideRayDistance))
             {
-                GameOver();
+                isGameOver = true;
+            }
+            else
+            {
+                isGameOver = false;
             }
         }
         void Jump()
@@ -80,6 +88,7 @@ namespace MobileGaming
 
         void GameOver()
         {
+            isGameOver = true;
             keepPlayingMenu.SetActive(true);
         }
     }
