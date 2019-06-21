@@ -35,6 +35,10 @@ namespace MobileGaming
             {
                 GameOver();
             }
+            if (isGameOver == true)
+            {
+
+            }
         }
 
         void PushRight()
@@ -59,37 +63,22 @@ namespace MobileGaming
                 Jump();
                 jumpCount++;
             }
-
-            CheckStopped();
         }
 
-        void CheckStopped() // this sends a ray to the side to check if we have collided with a surface
-        {
-            //if (rigid.velocity.x == 0)
-            //{
-            //    print("Stopped");
-            //}
-
-            Ray SideRay = new Ray(transform.position, transform.right);
-            RaycastHit hit;
-            if (Physics.Raycast(SideRay, out hit, sideRayDistance))
-            {
-                isGameOver = true;
-            }
-            else
-            {
-                isGameOver = false;
-            }
-        }
         void Jump()
         {
             rigid.velocity = new Vector2(rigid.velocity.x, jumpHeight); // adds a small force Upwards timsed by jumpheight
         }
 
-        void GameOver()
+        public void GameOver()
         {
             isGameOver = true;
-            keepPlayingMenu.SetActive(true);
+            if (isGameOver == true)
+            {
+                keepPlayingMenu.SetActive(true);
+            }
         }
+
+
     }
 }

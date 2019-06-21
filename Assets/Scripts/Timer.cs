@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 namespace MobileGaming
 {
     public class Timer : MonoBehaviour
     {
-        Text text;
+        TextMeshProUGUI text;
         public int timerSpeed = 1;
 
         private float time;
 
         private void Start()
         {
-            text = GetComponent<Text>();
+            text = GetComponent<TextMeshProUGUI>();
         }
         private void Update()
         {
